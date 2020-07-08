@@ -7,7 +7,7 @@ module.exports.conversions = function(params) {
     ProdServer: 'bool',
     Part_No: 'varchar',
     Name: 'varchar',
-    Multiple: 'bool',
+    Multiple: 'int',
     Container_Note: 'varchar',
     Cavity_Status_Key: 'int',
     Container_Status: 'varchar',
@@ -42,6 +42,8 @@ module.exports.conversions = function(params) {
   for (var prop in retParams) {
     if ('mediumint' == propTypes[prop] && '' == retParams[prop]) retParams[prop] = null;
     if ('int' == propTypes[prop] && '' == retParams[prop]) retParams[prop] = null;
+    if ('bool' == propTypes[prop] && 'True' == retParams[prop]) retParams[prop] = true;
+    if ('bool' == propTypes[prop] && 'False' == retParams[prop]) retParams[prop] = false;
     // console.log(prop + ' ' + retParams[prop]);
   }
   return retParams;
